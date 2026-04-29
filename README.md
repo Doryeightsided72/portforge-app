@@ -6,7 +6,6 @@
 ![Manifest](https://img.shields.io/badge/Manifest-V3-4338ca)
 ![License](https://img.shields.io/badge/License-MPL--2.0-blue)
 
----
 
 ## Background
 
@@ -20,8 +19,6 @@ Mozilla shipped it **disabled by default**, with no user interface and no mentio
 | `privacy.trackingprotection.content.protection.test_list_urls` | Pipe-separated list of filter list URLs |
 
 This extension gives you a proper UI to manage both.
-
----
 
 ## Features
 
@@ -40,14 +37,10 @@ Standard WebExtensions **cannot write arbitrary `about:config` preferences**. Th
 
 The `browser.privacy` API covers ETP (Enhanced Tracking Protection) and that toggle works instantly. But the two adblock-rust prefs have no equivalent WebExtension API, so the extension guides you through a one-time ~30 second manual setup instead.
 
----
-
 ## Requirements
 
 - **Firefox 149 or later** (where adblock-rust is bundled)
 - Windows, macOS, or Linux
-
----
 
 ## Installation
 
@@ -84,8 +77,6 @@ zip -r adblock-rust-manager.xpi . -x "*.DS_Store" -x "*.git*" -x "README.md"
 
 Then follow Option A or B above using the generated `.xpi`.
 
----
-
 ## Usage
 
 Once the extension is installed, click the **purple shield icon** in the Firefox toolbar to open the popup.
@@ -120,8 +111,6 @@ Toggle **"Disable Enhanced Tracking Protection"** at the top of the popup. This 
 
 That's it. adblock-rust is now active with your chosen filter lists.
 
----
-
 ## Default filter lists
 
 | List | Purpose | URL |
@@ -140,15 +129,11 @@ Additional lists available via the Quick-add chips in the popup:
 - AdGuard Base Filters
 - AdGuard Tracking Protection
 
----
-
 ## Testing that it works
 
 1. In the extension popup, make sure ETP is **disabled** for the site you're testing (or use the shield icon in the address bar to disable it per-site)
 2. Visit a site with known ads such as [yahoo.com](https://yahoo.com)
 3. Ad slots will still render in the page layout, but the actual ad content will be blocked — you'll see empty boxes or "Advertisement" placeholders instead of real ads
-
----
 
 ## Architecture
 
@@ -173,8 +158,6 @@ An earlier version of this extension used Firefox's `experiment_apis` mechanism 
 
 The current approach uses only standard MV3 WebExtension APIs and requires no special Firefox configuration beyond the one-time `about:config` setup described above.
 
----
-
 ## Permissions
 
 | Permission | Why it's needed |
@@ -182,8 +165,6 @@ The current approach uses only standard MV3 WebExtension APIs and requires no sp
 | `privacy` | Controls ETP via `browser.privacy.websites.trackingProtectionMode` |
 | `storage` | Persists filter lists and toggle states across sessions |
 | `clipboardWrite` | Copies pref names and URL list values to your clipboard |
-
----
 
 ## License
 
