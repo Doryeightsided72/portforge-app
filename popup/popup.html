@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>adblock-rust Manager</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+        <rect width="26" height="26" rx="6" fill="url(#hg)"/>
+        <path d="M13 3L4 7.5V13C4 17.7 8 21.8 13 22.8C18 21.8 22 17.7 22 13V7.5L13 3Z"
+              fill="white" fill-opacity="0.18" stroke="white" stroke-width="1.2"/>
+        <path d="M9 13L12 16L17 10" stroke="white" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round"/>
+        <defs>
+          <linearGradient id="hg" x1="0" y1="0" x2="26" y2="26">
+            <stop offset="0%" stop-color="#7c3aed"/>
+            <stop offset="100%" stop-color="#4338ca"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+    <div class="header-text">
+      <h1>adblock-rust Manager</h1>
+      <p>Firefox 149+ built-in Brave engine</p>
+    </div>
+  </header>
+
+  <!-- ETP -->
+  <section class="card">
+    <div class="card-row">
+      <div class="card-body">
+        <div class="card-title">
+          <span class="dot dot-live"></span>
+          Disable Enhanced Tracking Protection
+        </div>
+        <p class="card-desc">Turns off Firefox's built-in ETP so adblock-rust handles blocking. Applied instantly.</p>
+        <p class="etp-warn hidden" id="etpWarn">⚠️ ETP is OFF — built-in protection inactive.</p>
+      </div>
+      <label class="toggle">
+        <input type="checkbox" id="etpToggle" />
+        <span class="slider slider-orange"></span>
+      </label>
+    </div>
+  </section>
+
+  <!-- Step 1: Enable engine -->
+  <section class="card">
+    <div class="card-title-bar">
+      <span class="step-badge">Step 1</span>
+      <span class="card-title-text">Enable the engine</span>
+      <span class="applied-tag hidden" id="engineApplied">✓ Applied</span>
+    </div>
+    <p class="card-desc">In Firefox, open a new tab, type <code>about:config</code> and press Enter. Search for the pref below and set it to <strong>true</strong>.</p>
+    <div class="code-block">
+      <span class="code-label">Pref name — click to copy</span>
+      <code id="enginePrefName" class="copyable" title="Click to copy">privacy.trackingprotection.content.protection.enabled</code>
+    </div>
+    <div class="action-row">
+      <button class="btn btn-primary" id="engineCopyBtn">📋 Copy pref name</button>
+      <button class="btn btn-ghost btn-sm" id="engineMarkBtn">Mark done ✓</button>
+    </div>
+  </section>
+
+  <!-- Step 2: Filter lists -->
+  <section class="card">
+    <div class="card-title-bar">
+      <span class="step-badge">Step 2</span>
+      <span class="card-title-text">Set filter lists</span>
+      <span class="badge" id="listCountBadge">0</span>
+      <span class="applied-tag hidden" id="listsApplied">✓ Applied</span>
+    </div>
+    <p class="card-desc">In <code>about:config</code>, find the pref below, click the ✏️ edit icon, and paste your copied URL list.</p>
+    <div class="code-block">
+      <span class="code-label">Pref name — click to copy</span>
+      <code class="copyable" id="listsPrefName" title="Click to copy">privacy.trackingprotection.content.protection.test_list_urls</code>
+    </div>
+
+    <div id="listContainer" class="list-container"></div>
+
+    <div class="add-row">
+      <input type="url" id="newListUrl" class="url-input" placeholder="https://example.com/filters.txt" />
+      <button class="btn btn-primary btn-icon" id="addListBtn">+ Add</button>
+    </div>
+
+    <div class="preset-wrap">
+      <p class="preset-label">Quick-add:</p>
+      <div class="preset-chips" id="presetChips"></div>
+    </div>
+
+    <div class="apply-row">
+      <button class="btn btn-primary" id="listsCopyBtn">📋 Copy URL list value</button>
+      <button class="btn btn-ghost btn-sm" id="listsMarkBtn">Mark done ✓</button>
+    </div>
+
+    <div class="value-preview">
+      <span class="value-preview-label">Combined value (to paste in about:config):</span>
+      <div class="value-preview-text" id="valuePreviewText"></div>
+    </div>
+  </section>
+
+  <footer>
+    <button class="btn btn-ghost btn-sm" id="resetBtn">↺ Reset defaults</button>
+    <a class="footer-link" id="helpLink" href="#">How does this work?</a>
+  </footer>
+
+  <!-- Modal -->
+  <div class="modal-backdrop hidden" id="modalBackdrop">
+    <div class="modal">
+      <h3>How does this work?</h3>
+      <p>Firefox 149 ships <strong>adblock-rust</strong> (Brave's Rust engine, MPL-2.0) disabled with no UI, controlled by two <code>about:config</code> prefs.</p>
+      <p>Standard WebExtensions <strong>cannot</strong> write arbitrary <code>about:config</code> prefs — so this extension guides you to set them manually once, and manages your filter list so you only copy-paste a single value.</p>
+      <p><strong>ETP</strong> is controlled via the standard <code>browser.privacy</code> WebExtension API and works instantly with no manual steps.</p>
+      <button class="btn btn-secondary" id="modalClose">Close</button>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" aria-live="polite"></div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

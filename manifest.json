@@ -1,0 +1,42 @@
+{
+  "manifest_version": 3,
+  "name": "adblock-rust Manager",
+  "version": "1.0.0",
+  "description": "Enable & manage Firefox's built-in adblock-rust engine (Firefox 149+). Guides you through about:config setup and manages filter lists.",
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "adblock-rust-manager@local",
+      "strict_min_version": "109.0"
+    }
+  },
+
+  "permissions": [
+    "storage",
+    "privacy",
+    "tabs",
+    "clipboardWrite"
+  ],
+
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "adblock-rust Manager",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "96": "icons/icon96.png"
+    }
+  },
+
+  "background": {
+    "scripts": ["background.js"]
+  },
+
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "96": "icons/icon96.png"
+  }
+}
